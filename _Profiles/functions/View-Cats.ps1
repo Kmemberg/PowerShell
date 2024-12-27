@@ -11,7 +11,7 @@ function View-Cats {
     )
     $IE = New-Object -ComObject internetexplorer.application
     $IE.visible = $true
-    $IE.FullScreen = $true
+    $IE.FullScreen = $false
     $shell = New-Object -ComObject wscript.shell
     $shell.AppActivate("Internet Explorer")
 
