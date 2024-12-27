@@ -1,6 +1,6 @@
 function Test-DatePattern {
     #http://jdhitsolutions.com/blog/2014/10/powershell-dates-times-and-formats/
-    $patterns = "d", "D", "g", "G", "f", "F", "m", "o", "r", "s", "t", "T", "u", "U", "Y", "dd", "MM", "yyyy", "yy", "hh", "mm", "ss", "yyyyMMdd", "yyyyMMddhhmm", "yyyyMMddhhmmss"
+    $patterns = "d", "D", "g", "G", "f", "F", "m", "o", "r", "s", "t", "T", "u", "U", "Y", "dd", "MM", "yyyy", "yy", "hh", "HH", "mm", "ss", "yyyyMMdd", "yyyyMMddhhmm", "yyyyMMddHHmm", "yyyyMMddhhmmss", "yyyyMMddHHmmss"
 
     Write-Host "It is now $(Get-Date)" -ForegroundColor Green
 
