@@ -16,7 +16,7 @@ function New-ScriptMessage {
 
     .PARAMETER DateFormat
         Specifies the format of the date.
-        Default is 'yyyy\/MM\/dd HH:mm:ss:ff' For example: 2016/04/20 23:33:46:78
+        Default is 'yyyy\/MM\/dd HH:mm:ss' For example: 2016/04/20 23:33:46
 
     .PARAMETER FunctionScope
         Valid values are "Global", "Local", or "Script", or a number relative to the current scope (0 through the number of scopes, where 0 is the current scope and 1 is its parent). "Local" is the default
@@ -62,7 +62,7 @@ function New-ScriptMessage {
     (
         [String]$Message,
         [String]$Block,
-        [String]$DateFormat = 'yyyy\/MM\/dd HH:mm:ss:ff',
+        [String]$DateFormat = 'yyyy\/MM\/dd HH:mm:ss',
         $FunctionScope = "1"
     )
 
