@@ -1,8 +1,4 @@
 # PowerShell
-
-This repository is used for all my public scripts.
-Let me know if you have any issues using them, always space for improvement
-Feel free to fork
-
-* [Blog](https://lazywinadmin.com)
-* [Twitter @LazyWinAdmin](https://twitter.com/LazyWinAdmin)
+[Github](https://github.com/lazywinadmin/PowerShell)
+fork of lazyadmins powershell scripts 
+modified as needed by myself.
