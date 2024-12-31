@@ -247,18 +247,18 @@ Function Invoke-Ping {
 
                             }
 
-                            #If runtime exceeds max, dispose the runspace
+                            # If runtime exceeds max, dispose the runspace
                             ElseIf ($runspaceTimeout -ne 0 -and $runtime.totalseconds -gt $runspaceTimeout) {
 
                                 $script:completedCount++
-                                $timedOutTasks = $true
+                                #$timedOutTasks = $true
 
-                                #add logging details and cleanup
+                                # add logging details and cleanup
                                 $log.status = "TimedOut"
                                 Write-Verbose ($log | ConvertTo-Csv -Delimiter ";" -NoTypeInformation)[1]
                                 Write-Error "Runspace timed out at $($runtime.totalseconds) seconds for the object:`n$($runspace.object | Out-String)"
 
-                                #Depending on how it hangs, we could still get stuck here as dispose calls a synchronous method on the powershell instance
+                                # Depending on how it hangs, we could still get stuck here as dispose calls a synchronous method on the powershell instance
                                 if (!$noCloseOnTimeout) { $runspace.powershell.dispose() }
                                 $runspace.Runspace = $null
                                 $runspace.powershell = $null
