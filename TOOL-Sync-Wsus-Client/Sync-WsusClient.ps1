@@ -28,33 +28,33 @@ function sync-WsusClient {
     Here's one place where it came from: http://pleasework.robbievance.net/howto-force-really-wsus-clients-to-check-in-on-demand/
     Roger P Seekell, (2019), 9-13-2019
 #>
-Param(
-    [Parameter(ValueFromPipeline=$true,
-        ValueFromPipelineByPropertyName=$true)]
+    Param(
+        [Parameter(ValueFromPipeline = $true,
+            ValueFromPipelineByPropertyName = $true)]
         [string[]]$ComputerName = 'localhost',
-    [pscredential]$Credential = $null
-)
-process {
-    #this script block will run on each computer
-    $scriptBlock = {
-        try {
-        $updateSession = New-Object -com "Microsoft.Update.Session"
-        $null = $updateSession.CreateUpdateSearcher().Search($criteria).UPdates #I don't want to see them
-        wuauclt /reportnow
-        "$env:computername - Done!"
+        [pscredential]$Credential = $null
+    )
+    process {
+        #this script block will run on each computer
+        $scriptBlock = {
+            try {
+                $updateSession = New-Object -com "Microsoft.Update.Session"
+                $null = $updateSession.CreateUpdateSearcher().Search($criteria).UPdates #I don't want to see them
+                wuauclt /reportnow
+                "$env:computername - Done!"
+            }
+            catch {
+                Write-Error "Sync unsuccessful on $env:computername : $_"
+            }
+        }#end script block
+
+        $splat = @{"ComputerName" = $ComputerName; "ScriptBlock" = $scriptBlock }
+
+        if ($Credential -ne $null) {
+            $splat += @{"Credential" = $Credential }
         }
-        catch {
-            Write-Error "Sync unsuccessful on $env:computername : $_"
-        }
-    }#end script block
 
-    $splat = @{"ComputerName" = $ComputerName; "ScriptBlock" = $scriptBlock}
-
-    if ($Credential -ne $null) {
-        $splat += @{"Credential" = $Credential}
-    }
-
-    Invoke-Command @splat #run with the two or three parameters above
-}#end process
+        Invoke-Command @splat #run with the two or three parameters above
+    }#end process
 
 }#end function
